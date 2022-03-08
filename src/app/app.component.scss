@@ -1,0 +1,39 @@
+$primary: rgb(111,0,255);
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+header{
+  background-color: $primary;
+  padding: 2em 0;
+
+  a{
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 35px;
+
+  }
+
+}
+
+// footer{
+//   background-color: $primary;
+//   padding: 1em 0;
+
+//   a{
+//       color: white;
+//       text-decoration: none;
+//       font-weight: bold;
+
+//   }
+
+// }
+
+// .impressum{
+//     width: 80%;
+//     margin: 0 auto;
+// }
+

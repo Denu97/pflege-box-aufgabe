@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    
+  }
+  
+  form {
+    width: 280px;
+    mat-form-field{
+      margin-top: 5px;
+      display: block;
+    } 
+  }
+
+  .submit-btn{
+    width: 50%;
+    margin-top: 1rem;
+    margin-left: auto;
+  }
+  
+  .section-title{
+    margin-top: 2rem;
+  }
+
+
+  
+  
+  
+  
+  
+  
+  

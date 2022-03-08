@@ -1,0 +1,183 @@
+<div class="container">
+      <div class="row">
+        <h2 class="section-title">Angaben Versicherte(r)</h2>
+        
+  
+        <!--Anrede-->
+        <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
+          <mat-form-field class="full-width">
+            <mat-label>Anrede</mat-label>
+            <mat-select formControlName ="gender" required>
+              <mat-option *ngFor="let gender of genders" [value]="gender">
+                {{gender}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="userDetailsForm.hasError('required')"></mat-error>
+          </mat-form-field>
+       
+     <!--Vorname-->
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Vorname" formControlName="firstName" required>
+            <mat-error *ngFor="let validation of validation_messages.firstName">
+              <mat-error class="error-message" *ngIf="userDetailsForm.get('firstName').hasError(validation.type) && (userDetailsForm.get('firstName').dirty || userDetailsForm.get('firstName').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+  
+         <!--Nachname-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Nachname" formControlName="lastName" required>
+              <mat-error *ngFor="let validation of validation_messages.lastName">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('lastName').hasError(validation.type) && (userDetailsForm.get('lastName').dirty || userDetailsForm.get('lastName').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+  
+            <!--Straße und Nr.-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Straße und Nr." formControlName="adress" required>
+              <mat-error *ngFor="let validation of validation_messages.adress">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('adress').hasError(validation.type) && (userDetailsForm.get('adress').dirty || userDetailsForm.get('adress').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+  
+  
+            <!--Adresszusatz-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Adresszusatz">
+            </mat-form-field>
+  
+  
+            <!--PLZ-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="PLZ" formControlName="zipCode" required>
+              <mat-error *ngFor="let validation of validation_messages.zipCode">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('zipCode').hasError(validation.type) && (userDetailsForm.get('zipCode').dirty || userDetailsForm.get('zipCode').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+  
+            <!--Ort-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Ort" formControlName="location" required>
+              <mat-error *ngFor="let validation of validation_messages.location">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('location').hasError(validation.type) && (userDetailsForm.get('location').dirty || userDetailsForm.get('location').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+              
+        
+            <!-- Abweichende Lieferadresse -->
+            <mat-checkbox (click)="toggleAdress()" >Abweichende Lieferadresse?</mat-checkbox>
+            <div *ngIf="!this.isAdress" >
+
+               <!--Anrede-->
+               <mat-form-field class="full-width">
+                <mat-label>Anrede</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let gender2 of genders2" [value]="gender2.value">
+                    {{gender2.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+       
+     <!--Vorname-->
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Vorname" >
+          </mat-form-field>
+  
+         <!--Nachname-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Nachname" >
+            </mat-form-field>
+  
+            <!--Straße und Nr.-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Straße und Nr." >
+            </mat-form-field>
+  
+  
+            <!--Adresszusatz-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Adresszusatz" >
+            </mat-form-field>
+  
+  
+            <!--PLZ-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="PLZ" >
+            </mat-form-field>
+  
+            <!--Ort-->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Ort" >
+            </mat-form-field>
+            </div>
+  
+            <h2 class="section-title">Versicherungsart</h2>
+  
+          
+          <!--Versicherungsart-->
+          <mat-button-toggle-group >
+        <mat-button-toggle class="btn1" (click)="toggleCollapse()">gesetzlich </mat-button-toggle>
+        <mat-button-toggle class="btn2" >privat</mat-button-toggle>
+      </mat-button-toggle-group>
+        <div *ngIf="!isCollapsed" >
+          <mat-form-field class="full-width">
+          <input matInput placeholder="Krankenkasse" formControlName="healthInsurance" required>
+              <mat-error *ngFor="let validation of validation_messages.healthInsurance">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('healthInsurance').hasError(validation.type) && (userDetailsForm.get('healthInsurance').dirty || userDetailsForm.get('healthInsurance').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+              <mat-form-field class="full-width">
+              <input matInput placeholder="Versicherungsnummer" formControlName="insuranceNumber" required>
+              <mat-hint align="end" >Hinweis: A123456789</mat-hint>
+              <mat-error *ngFor="let validation of validation_messages.insuranceNumber">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('insuranceNumber').hasError(validation.type) && (userDetailsForm.get('insuranceNumber').dirty || userDetailsForm.get('insuranceNumber').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+        </div>
+  
+        <h2 class="section-title">Pflegebox</h2>
+  
+          <!--Boxarten-->
+          <mat-form-field class="full-width">
+            <mat-label>Pflegebox</mat-label>
+            <mat-select formControlName ="boxControl" required>
+              <mat-option *ngFor="let box of boxes" [value]="box">
+                {{box}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="userDetailsForm.hasError('required')">bitte box wählen</mat-error>
+          </mat-form-field>
+  
+      
+          <re-captcha class="verify"  (resolved)="resolved($event)" siteKey="6LeQ-L8eAAAAAEcgtW-JUcCD-g2r1y05GHhlTR2p" > </re-captcha>
+          
+        
+          <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!userDetailsForm.valid">
+            Senden
+          </button>
+        </form> 
+  </div> 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+     
+  
